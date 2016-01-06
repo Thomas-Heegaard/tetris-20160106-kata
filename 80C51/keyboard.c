@@ -1,11 +1,11 @@
 #include "keyboard.h"
 #include "test.h"
 
-#define KEY_NONE 0xFF
-#define KEY_8 0xFD
-#define KEY_4 0xFE
-#define KEY_6 0xFB
-#define KEY_2 0xFD
+#define KEY_NONE 	0xFF
+#define KEY_8 		0xFD
+#define KEY_4 		0xFE
+#define KEY_6 		0xFB
+#define KEY_2 		0xFD
 
 /**
  * Detecte les touches 8, 4, 6 et 2 comme des fleches.
@@ -33,6 +33,7 @@ Arrow KEYBOARD_readArrows(unsigned char *keyboard) {
 	return ARROW_NEUTRAL;
 }
 
+// Test KEYBOARD_readKeyPress est validé avec sucses !!!! Atomega
 Arrow KEYBOARD_readKeyPress(unsigned char *keyboard) {
 	static Arrow lastArrow = ARROW_NEUTRAL;
 	Arrow arrow = KEYBOARD_readArrows(keyboard);
@@ -45,6 +46,7 @@ Arrow KEYBOARD_readKeyPress(unsigned char *keyboard) {
 	return ARROW_NEUTRAL;
 }
 
+// Test KEYBOARD_keyPress est validé avec sucses !!!! Atomega
 Arrow KEYBOARD_keyPress() {
 	static 	unsigned char *keyboard = (unsigned char __xdata *) 0x3000;
 
