@@ -128,7 +128,7 @@ int bddBoardDisplay() {
 	return BDD_assert(c, "BOD");
 }
 
-int bddClearSolidRows1() {
+int bddClearSolidRows1() {// a moi 
 	BddContent initial = {
 		"%%%%%%%%%%",
 		"%%%%%%%%% ",
