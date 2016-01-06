@@ -56,10 +56,10 @@ void main(void) {
 	int testsInError = 0;
 	STDIO_initialize();
 
-	testsInError += testKeyboard();
+	//testsInError += testKeyboard();
 	testsInError += testBoard();
-	testsInError += testPiece();
-	testsInError += testRound();
+	//testsInError += testPiece();
+	//testsInError += testRound();
 
 	printf("%d tests en erreur", testsInError);
 
