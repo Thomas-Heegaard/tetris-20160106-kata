@@ -57,8 +57,8 @@ void main(void) {
 	STDIO_initialize();
 
 	testsInError += testKeyboard();
-	testsInError += testBoard();
-	testsInError += testPiece();
+	//testsInError += testBoard();
+	//testsInError += testPiece();
 	//testsInError += testRound();
 
 	printf("%d tests en erreur", testsInError);
