@@ -202,8 +202,8 @@ int testBoard() {
 	testsInError += bddBoardDraw();
 	testsInError += bddBoardClear();
 	testsInError += bddBoardDisplay();
-	testsInError += bddClearSolidRows1();
-	testsInError += bddClearSolidRows2();
+	//testsInError += bddClearSolidRows1();
+	//testsInError += bddClearSolidRows2();
 	return testsInError;
 }
 #endif
