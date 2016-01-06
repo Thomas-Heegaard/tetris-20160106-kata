@@ -119,7 +119,7 @@ void PIECE_initialize(Piece *piece, TetrominoType type, unsigned char x, unsigne
 
 	piece->block.width = tetromino[type].width;
 	piece->block.height = tetromino[type].height;
-	piece->block.data = tetromino[type].data;
+	piece->block.block_data = tetromino[type].block_data;
 	piece->position.x = x;
 	piece->position.y = y;
 	piece->orientation = orientation;
