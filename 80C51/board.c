@@ -14,7 +14,7 @@
  * @param x1, y1: Coordonnées de l'angle inférieur gauche.
  */
 void BOARD_draw(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1) {
-	// À faire...
+	int i, j;
 }
 
 /**
