@@ -59,7 +59,7 @@ void main(void) {
 	testsInError += testKeyboard();
 	testsInError += testBoard();
 	testsInError += testPiece();
-	testsInError += testRound();
+	//testsInError += testRound();
 
 	printf("%d tests en erreur", testsInError);
 
