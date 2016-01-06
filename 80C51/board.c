@@ -24,14 +24,18 @@ void BOARD_draw(unsigned char x0, unsigned char y0, unsigned char x1, unsigned c
  * @param x1, y1: Coordonnées de l'angle inférieur gauche.
  */
 void BOARD_clear(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1) {
-	// À faire... Working un progress TJO
-   for(int y = y0; y < y1; y++)
+	// OK
+   int i;
+   int j;
+
+   for(j = x0; j <= x1; j++)
    {
-      for(int x = x0; x < x1; x++)
+      for(i = y0; i <= y1; i++)
       {
-	 BOARD_copyFromRomToCg(y*TETRIS_LIMIT_X0 + x, 0x00);
+	 T6963C_writeAt(j, i, EMPTY);
       }
    }
+
 }
 
 /**
