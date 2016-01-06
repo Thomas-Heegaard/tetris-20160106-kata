@@ -6,7 +6,7 @@
 #include "test.h"
 #include "board.h"
 #include "keyboard.h"
-
+// test 
 #define ALSO_EMPTY 0x0E
 
 void calculateScreenPosition(Piece *piece, Position *positionInPiece, Position *screenPosition) {
