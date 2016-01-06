@@ -56,7 +56,7 @@ void main(void) {
 	int testsInError = 0;
 	STDIO_initialize();
 
-	testsInError += testKeyboard();
+	testsInError += testKeyboard(); // test du testKeyboardArrows OK
 	//testsInError += testBoard();
 	//testsInError += testPiece();
 	//testsInError += testRound();
