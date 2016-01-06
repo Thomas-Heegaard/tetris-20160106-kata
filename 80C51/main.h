@@ -9,7 +9,7 @@ typedef struct {
 typedef struct {
 	unsigned char width;
 	unsigned char height;
-	unsigned char *data;
+	unsigned char *block_data;
 } Block;
 
 #endif
