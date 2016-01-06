@@ -10,11 +10,26 @@
  * Dessine un rectangle entre les coordonnées spécifiées.
  * Le carré est dessiné avec des caractères BORDER_*, pour
  * que le serpent ne puisse pas le traverser.
- * @param x0, y0: Coordonnées de l'angle supérieur droit.
- * @param x1, y1: Coordonnées de l'angle inférieur gauche.
+ * @param x0, y0: Coordonnées de l'angle supérieur gauche.
+ * @param x1, y1: Coordonnées de l'angle inférieur droit.
  */
-void BOARD_draw(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1) {
-	// À faire...
+void BOARD_draw(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1) 
+{
+	int i;
+    T6963C_writeAt(x0, y0, BORDER_A);
+    T6963C_writeAt(x0, y1, BORDER_F);
+    T6963C_writeAt(x1, y0, BORDER_C);
+    T6963C_writeAt(x1, y1, BORDER_H);
+    for(i = x0 + 1; i < x1; i++)
+    {
+        T6963C_writeAt(i, y0, BORDER_B);
+        T6963C_writeAt(i, y1, BORDER_G);
+    }
+    for(i = y0 + 1; i < y1; i++)
+    {
+        T6963C_writeAt(x0, i, BORDER_D);
+        T6963C_writeAt(x1, i, BORDER_E);
+    }
 }
 
 /**
