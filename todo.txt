@@ -1,6 +1,6 @@
 
-[ ] BOARD_draw (board.c)
-[ ] BOARD_clear (board.c)
+[X] BOARD_draw (board.c)
+[X] BOARD_clear (board.c)
 [ ] dropLine (board.c)
 [ ] BOARD_clearSolidRows (board.c)
 [ ] BOARD_display (board.c)
