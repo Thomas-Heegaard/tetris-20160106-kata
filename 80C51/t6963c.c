@@ -130,7 +130,7 @@ unsigned int T6963C_autoWrite(unsigned int address,
 	for(n=0 ; n<size ; n++) {
 		address++;
 		T6963C_statusCheckForAutoWrite();
-		_t6963c[CD_DATA] = data1[n];
+		_t6963c[CD_DATA] = data1[n] - 32;
 	}
 	T6963C_noDataCommand(0xB2);
 	return address;

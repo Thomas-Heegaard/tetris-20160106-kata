@@ -89,7 +89,8 @@ void BOARD_initialize() {
 // fait descendre de 1 cran tous les obstacles qui se
 // trouvent au dessus.
 void dropLine(unsigned char line) {
-    int i, j;
+
+   int i, j;
 
    //	Décalage de la ligne 'line'
     for(j = line + TETRIS_LIMIT_Y0; j >= TETRIS_LIMIT_Y0; j--)
@@ -133,7 +134,37 @@ void BOARD_clearSolidRows() {
  * @param text Le texte à afficher.
  */
 void BOARD_display(unsigned char x0, unsigned char y0, char *text) {
-	// À faire...
+	int NbCaract = 0;
+	int x0start = x0;
+	// calcul du nombre de caractere
+	while (text[NbCaract] != '\0')
+	{
+		NbCaract ++;
+	}
+	// ecriture du cadre superieur
+	T6963C_writeAt(x0,y0,BORDER_A);
+	x0++;
+	T6963C_autoRepeat(T6963C_calculateAddress(x0,y0),BORDER_B, NbCaract);
+	x0 += NbCaract;
+	T6963C_writeAt(x0,y0,BORDER_C);
+	
+	// ecriture de la ligne de text avec cadre
+	x0 = x0start;
+	y0++;
+	T6963C_writeAt(x0,y0,BORDER_D);
+	x0++;
+	T6963C_autoWrite(T6963C_calculateAddress(x0,y0), text, NbCaract);
+	x0 += NbCaract;
+	T6963C_writeAt(x0,y0,BORDER_E);
+	
+	// ecriture du cadre inferrieur
+	x0 = x0start;
+	y0++;
+	T6963C_writeAt(x0,y0,BORDER_F);
+	x0++;
+	T6963C_autoRepeat(T6963C_calculateAddress(x0,y0),BORDER_G, NbCaract);
+	x0 += NbCaract;
+	T6963C_writeAt(x0,y0,BORDER_H);
 }
 
 #ifdef TEST
