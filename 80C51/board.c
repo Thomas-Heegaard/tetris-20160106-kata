@@ -89,7 +89,13 @@ void BOARD_initialize() {
 // fait descendre de 1 cran tous les obstacles qui se
 // trouvent au dessus.
 void dropLine(unsigned char line) {
-	// À faire...
+    int i, j;
+
+    for(i = 0; i < TETRIS_LIMIT_Y1; i++)
+        T6963C_writeAt(i, j, EMPTY);
+    for(j = line; j > 0; j--)
+        for(i = 0; i < TETRIS_LIMIT_Y1; i++)
+           T6963C_writeAt(i, j, T6963C_readFrom(x, j - 1)); 
 }
 
 /**
