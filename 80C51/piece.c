@@ -139,8 +139,12 @@ void PIECE_initialize(Piece *piece, TetrominoType type, unsigned char x, unsigne
  * @return 1 si la pièce peut être placée à cet endroit. 0 autrement.
  */
 char PIECE_canPlace(Piece *piece) {
-
     int i, j;
+    if(piece->position.x < TETRIS_LIMIT_X0 ||
+        piece->position.y < TETRIS_LIMIT_Y0 ||
+        piece->position.x + piece->block.width > TETRIS_LIMIT_X1 ||
+        piece->position.y + piece->block.height > TETRIS_LIMIT_Y1)
+        return 0;
     for(i = 0; i < piece->block.width; i++)
         for(j = 0; j < piece->block.height; j++)
             if(piece->block.block_data[j*piece->block.width + i] == PIECE)
