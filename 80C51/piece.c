@@ -491,22 +491,22 @@ int bddPieceFreezes() {
 int testPiece() {
 	int testsInError = 0;
 
-	testsInError += bddPlacePieceWithOrientation0();
-	testsInError += bddPlacePieceWithOrientation1();
-	testsInError += bddPlacePieceWithOrientation2();
-	testsInError += bddPlacePieceWithOrientation3();
+	//testsInError += bddPlacePieceWithOrientation0();
+	//testsInError += bddPlacePieceWithOrientation1();
+	//testsInError += bddPlacePieceWithOrientation2();
+	//testsInError += bddPlacePieceWithOrientation3();
 
 	//testsInError += bddClearPieceWithOrientation0();
 	//testsInError += bddClearPieceWithOrientation1();
 	//testsInError += bddClearPieceWithOrientation2();
 	//testsInError += bddClearPieceWithOrientation3();
 
-	//testsInError += bddCanPlacePieceBesidesObstacle();
-	//testsInError += bddCanPlacePieceBesidesBorderOrBottom();
-	//testsInError += bddCannotPlacePieceBecauseObstacle();
-	//testsInError += bddCannotPlacePieceBecauseLeftBorder();
-	//testsInError += bddCannotPlacePieceBecauseRightBorder();
-	//testsInError += bddCannotPlacePieceBecauseBottomBorder();
+	testsInError += bddCanPlacePieceBesidesObstacle();
+	testsInError += bddCanPlacePieceBesidesBorderOrBottom();
+	testsInError += bddCannotPlacePieceBecauseObstacle();
+	testsInError += bddCannotPlacePieceBecauseLeftBorder();
+	testsInError += bddCannotPlacePieceBecauseRightBorder();
+	testsInError += bddCannotPlacePieceBecauseBottomBorder();
 
 	//testsInError += bddPieceFreezes();
 

@@ -246,9 +246,9 @@ int bddClearClearLine1() {
 int testBoard() {
 	int testsInError = 0;
 
-	//testsInError += bddBoardDraw();
-	//testsInError += bddBoardClear();
-	//testsInError += bddBoardDisplay();
+	testsInError += bddBoardDraw();
+	testsInError += bddBoardClear();
+	testsInError += bddBoardDisplay();
 	testsInError += bddClearClearLine1();
 	testsInError += bddClearSolidRows1();
 	testsInError += bddClearSolidRows2();
