@@ -91,11 +91,14 @@ void BOARD_initialize() {
 void dropLine(unsigned char line) {
     int i, j;
 
-    for(i = 0; i < TETRIS_LIMIT_Y1; i++)
-        T6963C_writeAt(i, j, EMPTY);
-    for(j = line; j > 0; j--)
-        for(i = 0; i < TETRIS_LIMIT_Y1; i++)
-           T6963C_writeAt(i, j, T6963C_readFrom(i, j - 1)); 
+   //	Décalage de la ligne 'line'
+    for(j = line + TETRIS_LIMIT_Y0; j >= TETRIS_LIMIT_Y0; j--)
+        for(i = TETRIS_LIMIT_X0; i <= TETRIS_LIMIT_X1; i++)
+           T6963C_writeAt(i, j, T6963C_readFrom(i, j - 1));
+	
+   //	Efface la ligne du haut
+    for(i = TETRIS_LIMIT_X0; i <= TETRIS_LIMIT_X1; i++)
+        T6963C_writeAt(i, TETRIS_LIMIT_Y0, EMPTY);	
 }
 
 /**
@@ -105,17 +108,18 @@ void dropLine(unsigned char line) {
 void BOARD_clearSolidRows() {
    
    unsigned char x, y;
-   unsigned char count = 0;
+   unsigned char count = TETRIS_LIMIT_X0;
 
    
-   for(y = 0; y <= TETRIS_LIMIT_Y1; y++)
+   for(y = TETRIS_LIMIT_Y0; y <= TETRIS_LIMIT_Y1; y++)
    {
-      for(x = 0; x <= TETRIS_LIMIT_X1; x++)
+      count = TETRIS_LIMIT_X0;
+      
+      for(x = TETRIS_LIMIT_X0; x <= TETRIS_LIMIT_X1; x++)
       {
-	 if(T6963C_readFrom(x, y) != ' ') count++;
+	 if(T6963C_readFrom(x, y) != EMPTY) count++;
       }
-      if(count >= TETRIS_LIMIT_X1) dropLine(y);
-	 count = 0;
+      if(count == TETRIS_LIMIT_X1-1) dropLine(y - TETRIS_LIMIT_Y0);
    }
    
    
@@ -217,12 +221,35 @@ int bddClearSolidRows2() {
 	return BDD_assert(expected, "BOCLSR2");
 }
 
+
+int bddClearClearLine1() {
+	BddContent initial = {
+		"%% % %  %%",
+		" %% %%%%% ",
+		"%%%%%%%%%%",
+		" %    %%%%",
+		"%%%%%%%%%%"
+	};
+	BddContent expected = {
+		"          ",
+		"%% % %  %%",
+		" %% %%%%% ",
+		" %    %%%%",
+		"%%%%%%%%%%"
+	};
+
+	BDD_initialize(initial);
+	dropLine(2);
+	return BDD_assert(expected, "BODRPLN1");
+}
+
 int testBoard() {
 	int testsInError = 0;
 
-	testsInError += bddBoardDraw();
-	testsInError += bddBoardClear();
-	testsInError += bddBoardDisplay();
+	//testsInError += bddBoardDraw();
+	//testsInError += bddBoardClear();
+	//testsInError += bddBoardDisplay();
+	testsInError += bddClearClearLine1();
 	testsInError += bddClearSolidRows1();
 	testsInError += bddClearSolidRows2();
 	return testsInError;
