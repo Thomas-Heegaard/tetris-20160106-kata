@@ -50,9 +50,9 @@ void calculateScreenPosition(Piece *piece, Position *positionInPiece, Position *
 	screenPosition->y += piece->position.y;
 }
 
-unsigned char readPieceContent(Piece *piece, Position *positionInPiece) {
+/*unsigned char readPieceContent(Piece *piece, Position *positionInPiece) {
 	// À faire
-}
+}*/
 
 /**
  * Initialise une pièce à la position et rotation voulue, avec le tetromino indiqué.
@@ -72,23 +72,23 @@ void PIECE_initialize(Piece *piece, TetrominoType type, unsigned char x, unsigne
 		PIECE, PIECE
 	};
 	unsigned char __xdata tetrominoTData[] = {
-		0, PIECE, 0,
+		EMPTY, PIECE, EMPTY,
 		PIECE, PIECE, PIECE
 	};
 	unsigned char __xdata tetrominoSData[] = {
-		0, PIECE, PIECE,
-		PIECE, PIECE, 0
+		EMPTY, PIECE, PIECE,
+		PIECE, PIECE, EMPTY
 	};
 	unsigned char __xdata tetrominoZData[] = {
-		PIECE, PIECE, 0,
-		0, PIECE, PIECE
+		PIECE, PIECE, EMPTY,
+		EMPTY, PIECE, PIECE
 	};
 	unsigned char __xdata tetrominoJData[] = {
-		PIECE, 0, 0,
+		PIECE, EMPTY, EMPTY,
 		PIECE, PIECE, PIECE
 	};
 	unsigned char __xdata tetrominoLData[] = {
-		0, 0, PIECE,
+		EMPTY, EMPTY, PIECE,
 		PIECE, PIECE, PIECE	
 	};
 
@@ -134,32 +134,37 @@ void PIECE_initialize(Piece *piece, TetrominoType type, unsigned char x, unsigne
  * @return 1 si la pièce peut être placée à cet endroit. 0 autrement.
  */
 char PIECE_canPlace(Piece *piece) {
-	// À faire
-	return 0;
+    int i, j;
+    for(i = 0; i < piece->block.width; i++)
+        for(j = 0; j < piece->block.height; j++)
+            if(piece->block.block_data[j*piece->block.width + i/piece->block.width] == PIECE)
+                if(T6963C_readFrom(piece->position.x + i, piece->position.y + j) != EMPTY)
+                    return 0;
+    return 1;
 }
 
 /**
  * Dessine la pièce indiquée.
  * @param piece La description de la pièce.
  */
-void PIECE_place(Piece *piece) {
+/*void PIECE_place(Piece *piece) {
 	// À faire
-}
+}*/
 
 /**
  * Efface (remplace par des espaces) la pièce indiquée.
  */
-void PIECE_clear(Piece *piece) {
+/*void PIECE_clear(Piece *piece) {
 	// À faire
-}
+}*/
 
 /**
  * Remplace par des obstacles la pièce indiquée.
  * @param piece La pièce.
  */
-void PIECE_freeze(Piece *piece) {
+/*void PIECE_freeze(Piece *piece) {
 	// À faire
-}
+}*/
 
 #ifdef TEST
 
