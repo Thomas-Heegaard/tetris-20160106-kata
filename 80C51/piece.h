@@ -16,7 +16,7 @@ typedef enum {
 	S,
 	Z,
 	J,
-	L, 
+	L,
 #ifdef TEST
 	ABCF,
 	BLOCKING
