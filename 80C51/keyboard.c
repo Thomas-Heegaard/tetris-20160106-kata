@@ -97,7 +97,7 @@ int testKeyboard() {
 	int testsInError = 0;
 
 	testsInError += testKeyboardArrows();
-	//testsInError += testKeyboardKeyPress();
+	testsInError += testKeyboardKeyPress();
 	
 	return testsInError;
 }

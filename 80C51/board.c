@@ -103,7 +103,22 @@ void dropLine(unsigned char line) {
  * les obstacles au dessus de 1 niveau.
  */
 void BOARD_clearSolidRows() {
-	// À faire...
+   
+   unsigned char x, y;
+   unsigned char count = 0;
+
+   
+   for(y = 0; y <= TETRIS_LIMIT_Y1; y++)
+   {
+      for(x = 0; x <= TETRIS_LIMIT_X1; x++)
+      {
+	 if(T6963C_readFrom(x, y) != ' ') count++;
+      }
+      if(count >= TETRIS_LIMIT_X1) dropLine(y);
+	 count = 0;
+   }
+   
+   
 }
 
 /**
@@ -208,8 +223,8 @@ int testBoard() {
 	testsInError += bddBoardDraw();
 	testsInError += bddBoardClear();
 	testsInError += bddBoardDisplay();
-	//testsInError += bddClearSolidRows1();
-	//testsInError += bddClearSolidRows2();
+	testsInError += bddClearSolidRows1();
+	testsInError += bddClearSolidRows2();
 	return testsInError;
 }
 #endif
