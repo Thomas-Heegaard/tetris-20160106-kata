@@ -134,10 +134,7 @@ void PIECE_initialize(Piece *piece, TetrominoType type, unsigned char x, unsigne
  * @return 1 si la pièce peut être placée à cet endroit. 0 autrement.
  */
 char PIECE_canPlace(Piece *piece) {
-<<<<<<< HEAD
-	// À faire
-	return 0;
-=======
+
     int i, j;
     for(i = 0; i < piece->block.width; i++)
         for(j = 0; j < piece->block.height; j++)
@@ -145,7 +142,6 @@ char PIECE_canPlace(Piece *piece) {
                 if(T6963C_readFrom(piece->position.x + TETRIS_LIMIT_X0 + i, piece->position.y + TETRIS_LIMIT_Y0 + j) != EMPTY)
                     return 0;
     return 1;
->>>>>>> origin/piece_can_place
 }
 
 /**
@@ -153,12 +149,6 @@ char PIECE_canPlace(Piece *piece) {
  * @param piece La description de la pièce.
  */
 void PIECE_place(Piece *piece) {
-<<<<<<< HEAD
-
-
-=======
-	// À faire
->>>>>>> origin/piece_can_place
 }
 
 /**
