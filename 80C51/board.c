@@ -91,11 +91,11 @@ void BOARD_initialize() {
 void dropLine(unsigned char line) {
     int i, j;
 
-    for(i = 0; i < TETRIS_LIMIT_Y1; i++)
-        T6963C_writeAt(i, j, EMPTY);
-    for(j = line; j > 0; j--)
-        for(i = 0; i < TETRIS_LIMIT_Y1; i++)
-           T6963C_writeAt(i, j, T6963C_readFrom(i, j - 1)); 
+    for(i = TETRIS_LIMIT_X0; i < TETRIS_LIMIT_X1; i++)
+        T6963C_writeAt(i, TETRIS_LIMIT_Y0, EMPTY);
+    for(j = line; j < TETRIS_IMIT_Y1; j++)
+        for(i = TETRIS_LIMIT_X0; i < TETRIS_LIMIT_X1; i++)
+           T6963C_writeAt(i, j + 1, T6963C_readFrom(i, j)); 
 }
 
 /**

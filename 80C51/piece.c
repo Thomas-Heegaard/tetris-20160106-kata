@@ -138,7 +138,7 @@ char PIECE_canPlace(Piece *piece) {
     for(i = 0; i < piece->block.width; i++)
         for(j = 0; j < piece->block.height; j++)
             if(piece->block.block_data[j*piece->block.width + i/piece->block.width] == PIECE)
-                if(T6963C_readFrom(piece->position.x + i, piece->position.y + j) != EMPTY)
+                if(T6963C_readFrom(piece->position.x + TETRIS_LIMIT_X0 + i, piece->position.y + TETRIS_LIMIT_Y0 + j) != EMPTY)
                     return 0;
     return 1;
 }
@@ -147,24 +147,24 @@ char PIECE_canPlace(Piece *piece) {
  * Dessine la pièce indiquée.
  * @param piece La description de la pièce.
  */
-/*void PIECE_place(Piece *piece) {
+void PIECE_place(Piece *piece) {
 	// À faire
-}*/
+}
 
 /**
  * Efface (remplace par des espaces) la pièce indiquée.
  */
-/*void PIECE_clear(Piece *piece) {
+void PIECE_clear(Piece *piece) {
 	// À faire
-}*/
+}
 
 /**
  * Remplace par des obstacles la pièce indiquée.
  * @param piece La pièce.
  */
-/*void PIECE_freeze(Piece *piece) {
+void PIECE_freeze(Piece *piece) {
 	// À faire
-}*/
+}
 
 #ifdef TEST
 
