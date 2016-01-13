@@ -142,8 +142,8 @@ char PIECE_canPlace(Piece *piece) {
     int i, j;
     if(piece->position.x < TETRIS_LIMIT_X0 ||
         piece->position.y < TETRIS_LIMIT_Y0 ||
-        piece->position.x + piece->block.width > TETRIS_LIMIT_X1 ||
-        piece->position.y + piece->block.height > TETRIS_LIMIT_Y1)
+        piece->position.x + piece->block.width - 1 > TETRIS_LIMIT_X1 ||
+        piece->position.y + piece->block.height - 1 > TETRIS_LIMIT_Y1)
         return 0;
     for(i = 0; i < piece->block.width; i++)
         for(j = 0; j < piece->block.height; j++)
@@ -511,11 +511,11 @@ int testPiece() {
 	//testsInError += bddClearPieceWithOrientation3();
 
 	testsInError += bddCanPlacePieceBesidesObstacle();
-	//testsInError += bddCanPlacePieceBesidesBorderOrBottom();
+	testsInError += bddCanPlacePieceBesidesBorderOrBottom();
 	//testsInError += bddCannotPlacePieceBecauseObstacle();
-	//testsInError += bddCannotPlacePieceBecauseLeftBorder();
-	//testsInError += bddCannotPlacePieceBecauseRightBorder();
-	//testsInError += bddCannotPlacePieceBecauseBottomBorder();
+	testsInError += bddCannotPlacePieceBecauseLeftBorder();
+	testsInError += bddCannotPlacePieceBecauseRightBorder();
+	testsInError += bddCannotPlacePieceBecauseBottomBorder();
 
 	//testsInError += bddPieceFreezes();
 
