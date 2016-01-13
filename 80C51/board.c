@@ -89,7 +89,8 @@ void BOARD_initialize() {
 // fait descendre de 1 cran tous les obstacles qui se
 // trouvent au dessus.
 void dropLine(unsigned char line) {
-    int i, j;
+
+   int i, j;
 
    //	Décalage de la ligne 'line'
     for(j = line + TETRIS_LIMIT_Y0; j >= TETRIS_LIMIT_Y0; j--)
