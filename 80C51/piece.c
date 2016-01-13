@@ -50,8 +50,13 @@ void calculateScreenPosition(Piece *piece, Position *positionInPiece, Position *
 	screenPosition->y += piece->position.y;
 }
 
-unsigned char readPieceContent(Piece *piece, Position *positionInPiece) {
-	// À faire
+unsigned char readPieceContent(Piece *piece, Position *positionInPiece) // Devairs complier mais il nay a pas de test unitaire 
+{	
+   unsigned char index; 
+ 
+   index = piece->position.x + (piece->position.y * piece->block.width);  // ram point of view
+
+   return piece->block.block_data[index]; // Retour du caratère situer dans l'adresse mémoire  
 }
 
 /**
