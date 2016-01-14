@@ -127,43 +127,6 @@ void BOARD_clearSolidRows() {
 	 }
     }
    
-   
-   //	USE BOOL comme les flims sur le ciclimse
-   
-   
-   /*for(y = TETRIS_LIMIT_Y1; y > TETRIS_LIMIT_Y0; y--)
-   {
-      for(x = TETRIS_LIMIT_X0; x <= TETRIS_LIMIT_X1; x++)
-      {
-        if(T6963C_readFrom(x, y) == EMPTY)
-	{
-	   isntfl = 0;
-	   sleep();
-	}
-	else
-	{
-	   T6963C_writeAt(x, y, 44);
-	   sleep();
-	}
-     }
-	   
-      if(isntfl == 1) dropLine(y+1);
-   }*/
-   
-
-   
-   /*for(y = TETRIS_LIMIT_Y0; y <= TETRIS_LIMIT_Y1; y++)
-   {
-      count = TETRIS_LIMIT_X0;
-      
-      for(x = TETRIS_LIMIT_X0; x <= TETRIS_LIMIT_X1; x++)
-      {
-	 if(T6963C_readFrom(x, y) != EMPTY) count++;
-      }
-      if(count == TETRIS_LIMIT_X1-1) dropLine(y - TETRIS_LIMIT_Y0);
-   }*/
-   
-   
 }
 
 /**
