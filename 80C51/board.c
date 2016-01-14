@@ -93,7 +93,7 @@ void dropLine(unsigned char line) {
    int i, j;
 
    //	Décalage de la ligne 'line'
-    for(j = line + TETRIS_LIMIT_Y0; j >= TETRIS_LIMIT_Y0; j--)
+    for(j = TETRIS_LIMIT_Y1 - line; j > TETRIS_LIMIT_Y0; j--)
         for(i = TETRIS_LIMIT_X0; i <= TETRIS_LIMIT_X1; i++)
            T6963C_writeAt(i, j, T6963C_readFrom(i, j - 1));
 	
@@ -109,10 +109,50 @@ void dropLine(unsigned char line) {
 void BOARD_clearSolidRows() {
    
    unsigned char x, y;
-   unsigned char count = TETRIS_LIMIT_X0;
+   unsigned char isempty = 0;
+   unsigned count = 0;
+
+    for(y = TETRIS_LIMIT_Y1; y > TETRIS_LIMIT_Y0; y)
+    {
+       isempty = 0;
+	 for(x = TETRIS_LIMIT_X0; x <= TETRIS_LIMIT_X1; x++)
+	  if(T6963C_readFrom(x, y) == EMPTY) isempty=1;
+	 
+	 if(isempty == 0)
+	    dropLine(count);
+	 else
+	 {
+	    y--;
+	    count++;
+	 }
+    }
+   
+   
+   //	USE BOOL comme les flims sur le ciclimse
+   
+   
+   /*for(y = TETRIS_LIMIT_Y1; y > TETRIS_LIMIT_Y0; y--)
+   {
+      for(x = TETRIS_LIMIT_X0; x <= TETRIS_LIMIT_X1; x++)
+      {
+        if(T6963C_readFrom(x, y) == EMPTY)
+	{
+	   isntfl = 0;
+	   sleep();
+	}
+	else
+	{
+	   T6963C_writeAt(x, y, 44);
+	   sleep();
+	}
+     }
+	   
+      if(isntfl == 1) dropLine(y+1);
+   }*/
+   
 
    
-   for(y = TETRIS_LIMIT_Y0; y <= TETRIS_LIMIT_Y1; y++)
+   /*for(y = TETRIS_LIMIT_Y0; y <= TETRIS_LIMIT_Y1; y++)
    {
       count = TETRIS_LIMIT_X0;
       
@@ -121,7 +161,7 @@ void BOARD_clearSolidRows() {
 	 if(T6963C_readFrom(x, y) != EMPTY) count++;
       }
       if(count == TETRIS_LIMIT_X1-1) dropLine(y - TETRIS_LIMIT_Y0);
-   }
+   }*/
    
    
 }
@@ -252,8 +292,7 @@ int bddClearSolidRows2() {
 	return BDD_assert(expected, "BOCLSR2");
 }
 
-
-int bddClearClearLine1() {
+int bdddropLine() {
 	BddContent initial = {
 		"%% % %  %%",
 		" %% %%%%% ",
@@ -263,26 +302,28 @@ int bddClearClearLine1() {
 	};
 	BddContent expected = {
 		"          ",
+		"          ",
 		"%% % %  %%",
 		" %% %%%%% ",
-		" %    %%%%",
-		"%%%%%%%%%%"
+		" %    %%%%"
 	};
 
 	BDD_initialize(initial);
-	dropLine(2);
-	return BDD_assert(expected, "BODRPLN1");
+	dropLine(0);
+	dropLine(1);
+	return BDD_assert(expected, "DER1");
 }
 
 int testBoard() {
 	int testsInError = 0;
 
-	//testsInError += bddBoardDraw();
-	//testsInError += bddBoardClear();
-	//testsInError += bddBoardDisplay();
-	testsInError += bddClearClearLine1();
+	testsInError += bddBoardDraw();
+	testsInError += bddBoardClear();
+	testsInError += bddBoardDisplay();
+	//testsInError += bddClearClearLine1();
 	testsInError += bddClearSolidRows1();
 	testsInError += bddClearSolidRows2();
+	testsInError += bdddropLine();
 	return testsInError;
 }
 #endif
