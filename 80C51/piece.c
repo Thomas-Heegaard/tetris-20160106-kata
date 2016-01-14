@@ -139,11 +139,15 @@ void PIECE_initialize(Piece *piece, TetrominoType type, unsigned char x, unsigne
  * @return 1 si la pièce peut être placée à cet endroit. 0 autrement.
  */
 char PIECE_canPlace(Piece *piece) {
-
     int i, j;
+    if(piece->position.x < TETRIS_LIMIT_X0 ||
+        piece->position.y < TETRIS_LIMIT_Y0 ||
+        piece->position.x + piece->block.width > TETRIS_LIMIT_X1 ||
+        piece->position.y + piece->block.height > TETRIS_LIMIT_Y1)
+        return 0;
     for(i = 0; i < piece->block.width; i++)
         for(j = 0; j < piece->block.height; j++)
-            if(piece->block.block_data[j*piece->block.width + i/piece->block.width] == PIECE)
+            if(piece->block.block_data[j*piece->block.width + i] == PIECE)
                 if(T6963C_readFrom(piece->position.x + TETRIS_LIMIT_X0 + i, piece->position.y + TETRIS_LIMIT_Y0 + j) != EMPTY)
                     return 0;
     return 1;
@@ -496,17 +500,17 @@ int bddPieceFreezes() {
 int testPiece() {
 	int testsInError = 0;
 
-	testsInError += bddPlacePieceWithOrientation0();
-	testsInError += bddPlacePieceWithOrientation1();
-	testsInError += bddPlacePieceWithOrientation2();
-	testsInError += bddPlacePieceWithOrientation3();
+	//testsInError += bddPlacePieceWithOrientation0();
+	//testsInError += bddPlacePieceWithOrientation1();
+	//testsInError += bddPlacePieceWithOrientation2();
+	//testsInError += bddPlacePieceWithOrientation3();
 
 	//testsInError += bddClearPieceWithOrientation0();
 	//testsInError += bddClearPieceWithOrientation1();
 	//testsInError += bddClearPieceWithOrientation2();
 	//testsInError += bddClearPieceWithOrientation3();
 
-	//testsInError += bddCanPlacePieceBesidesObstacle();
+	testsInError += bddCanPlacePieceBesidesObstacle();
 	//testsInError += bddCanPlacePieceBesidesBorderOrBottom();
 	//testsInError += bddCannotPlacePieceBecauseObstacle();
 	//testsInError += bddCannotPlacePieceBecauseLeftBorder();

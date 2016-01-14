@@ -58,7 +58,7 @@ void main(void) {
 
 	//testsInError += testKeyboard(); // test du testKeyboardArrows OK
 	testsInError += testBoard();
-	//testsInError += testPiece();
+	testsInError += testPiece();
 	//testsInError += testRound();
 
 	printf("%d tests en erreur", testsInError);
